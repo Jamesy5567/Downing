@@ -1,0 +1,6 @@
+@Downing.Server_HostAddress = http://localhost:5023
+
+GET {{Downing.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
