@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Company } from '../company';
+import { CompaniesService } from '../companies.service';
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
 })
-export class IndexComponent {
+export class IndexComponent implements OnInit {
+  companies: Company[] = [];
 
+  constructor(public companiesService: CompaniesService) { }
+
+  ngOnInit(): void {
+    this.companiesService.getCompanies().subscribe((data: Company[]) => {
+      this.companies = data;
+    });
+  }
 }
