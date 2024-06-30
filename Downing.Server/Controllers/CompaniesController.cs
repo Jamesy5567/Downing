@@ -27,7 +27,7 @@ namespace Downing.Server.Controllers
 
         // GET: api/Companies
         [HttpGet]
-        public async Task<IEnumerable<Company>> GetCompaniesList()
+        public async Task<IEnumerable<Company>> Get()
         {
             return await _companiesService.GetCompaniesList();
         }

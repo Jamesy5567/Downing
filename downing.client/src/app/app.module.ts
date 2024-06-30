@@ -10,10 +10,12 @@ import { IndexComponent } from "./companies/index/index.component";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +24,7 @@ import { AppComponent } from './app.component';
     FormsModule,
     CompaniesModule,
     RouterModule.forRoot([
+      {path: '', component: AppComponent, pathMatch: 'full' },
       { path: 'companies', component: IndexComponent},
     ])
   ],
