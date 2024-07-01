@@ -9,7 +9,7 @@
     </div>
   </div>
   <br />
-  <form [formGroup]="createForm" (ngSubmit)="onSubmit(createForm)">
+  <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="companyName">Company Name:</label>
       <input formControlName="companyName"
@@ -17,12 +17,22 @@
              type="text"
              class="form-control" />
     </div>
+    <div *ngIf="companyName.invalid && (companyName.dirty || companyName?.touched)">
+      <small *ngIf="companyName?.errors?.required">Field is required.</small>
+      <small *ngIf="companyName?.errors?.maxlength">Maximum length is 100 characters.</small>
+      <small *ngIf="companyName?.errors?.pattern">Field must contain only alphanumeric and special characters.</small>
+    </div>
     <div class="form-group">
-      <label for="companyCode">Company Code:</label>
-      <input formControlName="companyCode"
-             id="companyCode"
+      <label for="code">Company Code:</label>
+      <input formControlName="code"
+             id="code"
              type="text"
              class="form-control" />
+    </div>
+    <div *ngIf="code.invalid && (code.dirty || code.touched)">
+      <small *ngIf="code.errors?.maxlength">Maximum length is 10 characters.</small>
+      <small *ngIf="code.errors?.pattern">Field must only contain uppercase alphanumeric characters.</small>
+      <small *ngIf="code.errors?.unique">Company Code Already Exists</small>
     </div>
     <div class="form-group">
       <label for="sharePrice">Share Price:</label>
@@ -31,6 +41,12 @@
              type="number"
              class="form-control" />
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!createForm.valid">Create</button>
+    <div *ngIf="sharePrice.invalid && (sharePrice.dirty || sharePrice.touched)">
+      <small *ngIf="sharePrice.errors?.pattern">Field must only have 5 decimal places.</small>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!createForm.valid">Save</button>
   </form>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
 </div>

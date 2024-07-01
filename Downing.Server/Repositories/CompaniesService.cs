@@ -21,11 +21,12 @@ namespace Downing.Server.Repositories
                             .ToListAsync();
         }
 
-        public async Task<IEnumerable<Company>> GetCompanyCodes()
+        public async Task<bool> CheckUniqueValue(string value)
         {
-            return await _context.Companies
-                            .Distinct()
-                            .ToListAsync();
+            var exists = await _context.Companies
+            .AnyAsync(e => e.Code == value);
+
+            return Ok(new { exists });
         }
 
         public async Task<Company> CreateCompany(Company company)

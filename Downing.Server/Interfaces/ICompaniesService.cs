@@ -10,7 +10,7 @@ namespace Downing.Server.Interfaces
     public interface ICompaniesService
     {
         Task<IEnumerable<Company>> GetCompaniesList();
-        Task<IEnumerable<Company>> GetCompanyCodes();
+        Task<bool> CheckUniqueValue(string value);
         Task<Company> CreateCompany(Company company);
     }
 }

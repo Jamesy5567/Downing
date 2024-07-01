@@ -12,10 +12,13 @@
       <ul class="navbar-nav flex-grow">
         <li class="nav-item"
             [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }">
+            [routerLinkActiveOptions]="{ exact: true }"
+            style="display: inline;">
           <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
         </li>       
-        <li class="nav-item" [routerLinkActive]="['link-active']">
+        <li class="nav-item"
+         [routerLinkActive]="['link-active']" 
+         style="display: inline;">
           <a class="nav-link text-dark" [routerLink]="['/companies']">Companies</a>
         </li>
       </ul>
