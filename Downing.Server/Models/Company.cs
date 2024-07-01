@@ -15,7 +15,6 @@ public partial class Company
     public string? CompanyName { get; set; }
 
     [DataType(DataType.DateTime)]
-    [Column(TypeName = "datetime2")]
     public DateTime? CreatedDate { get; set; }
 
     [Required]

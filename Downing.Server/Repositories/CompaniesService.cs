@@ -31,6 +31,8 @@ namespace Downing.Server.Repositories
 
         public async Task<Company> CreateCompany(Company company)
         {
+            company.CreatedDate = DateTime.Now;
+
             _context.Companies.Add(company);
             await _context.SaveChangesAsync();
             return company;
