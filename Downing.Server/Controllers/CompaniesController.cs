@@ -32,7 +32,7 @@ namespace Downing.Server.Controllers
             return await _companiesService.GetCompaniesList();
         }
 
-         [HttpGet("check-unique/{value}")]
+        [HttpGet("check-unique/{value}")]
         public async Task<IActionResult> CheckUniqueValue(string value)
         {
             var exists = await companiesService.ValueExistsAsync(value);
@@ -87,13 +87,16 @@ namespace Downing.Server.Controllers
         // POST: api/Companies
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Company>> CreateCompany(Company company)
+        public async Task<ActionResult<Company>> CreateCompany([FromBody] Company company)
         {
-           await _companiesService.CreateCompany(company);            
+            try {
+                await _companiesService.CreateCompany(company);
 
-           return CreatedAtAction("Post",
-                                  new { id = company.Id },
-                                  company);
+                return Ok(new { message = "Record created successfully" });
+            }
+            catch (Exception ex) {
+                return StatusCode(500, new { message = "An error occurred while creating the record", details = ex.Message });
+            }                     
         }
 
         // DELETE: api/Companies/5

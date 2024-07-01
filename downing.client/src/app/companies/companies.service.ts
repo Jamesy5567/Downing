@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -27,7 +27,7 @@ export class CompaniesService {
   }
 
   createCompany(company: Company): Observable<Company> {
-    return this.httpClient.post<Company>(this.apiUrl + '/companies', JSON.stringify(company), this.httpOptions)
+    return this.httpClient.post<Company>(this.apiUrl + '/companies', company)
       .pipe(
         catchError(this.errorHandler)
       )
@@ -40,7 +40,7 @@ export class CompaniesService {
     )
   }
 
-  errorHandler(error: { error: { message: string; }; }) {
+  errorHandler(error: HttpErrorResponse) {
     let errorMessage = '';
 
     if (error.error instanceof ErrorEvent) {

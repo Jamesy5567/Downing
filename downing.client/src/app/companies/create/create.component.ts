@@ -14,6 +14,7 @@ export class CreateComponent implements OnInit {
 
   company: Company[] = [];
   createForm;
+  errorMessage: string | null = null;
 
   constructor(
     public companiesService: CompaniesService,
@@ -26,7 +27,7 @@ export class CreateComponent implements OnInit {
         Validators.required,
         Validators.maxLength(100),
         Validators.pattern('^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};\'"\\|,.<>\\/?]+$')]],
-      companyCode: ["", [
+      code: ["", [
         Validators.required,
         Validators.maxLength(10),
         Validators.pattern('^[A-Z0-9]+$')],
@@ -41,11 +42,16 @@ export class CreateComponent implements OnInit {
     });
   }
 
-  onSubmit(formData: any) {
-    console.log(formData.value);
+  onSubmit() {
+    const companyData = this.formData.value;
 
-    this.companiesService.createCompany(formData.value).subscribe(res => {
+    this.companiesService.createCompany(companyData).subscribe(res => {
+      console.log('Record created successfully: ', res);
+      this.formData.reset();
       this.router.navigateByUrl('companies/index');
+    },
+    error => {
+      this.errorMessage = error;
     });
   }
 
