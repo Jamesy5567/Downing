@@ -35,7 +35,7 @@ namespace Downing.Server.Controllers
         [HttpGet("check-unique/{value}")]
         public async Task<IActionResult> CheckUniqueValue(string value)
         {
-            var exists = await companiesService.ValueExistsAsync(value);
+            var exists = await _companiesService.CheckUniqueValue(value);
             return Ok(new { exists });
         }
 

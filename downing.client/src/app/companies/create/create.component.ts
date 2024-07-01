@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Company } from "../company";
 import { CompaniesService } from "../companies.service";
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-create',
@@ -13,7 +14,7 @@ import { CompaniesService } from "../companies.service";
 export class CreateComponent implements OnInit {
 
   company: Company[] = [];
-  createForm;
+  createForm: FormGroup;
   errorMessage: string | null = null;
 
   constructor(
@@ -43,11 +44,12 @@ export class CreateComponent implements OnInit {
   }
 
   onSubmit() {
-    const companyData = this.formData.value;
+    
+    const companyData: Company = this.createForm.value;        
 
     this.companiesService.createCompany(companyData).subscribe(res => {
       console.log('Record created successfully: ', res);
-      this.formData.reset();
+      this.createForm.reset();
       this.router.navigateByUrl('companies/index');
     },
     error => {

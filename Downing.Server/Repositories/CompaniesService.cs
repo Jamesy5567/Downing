@@ -26,7 +26,7 @@ namespace Downing.Server.Repositories
             var exists = await _context.Companies
             .AnyAsync(e => e.Code == value);
 
-            return Ok(new { exists });
+            return exists;
         }
 
         public async Task<Company> CreateCompany(Company company)

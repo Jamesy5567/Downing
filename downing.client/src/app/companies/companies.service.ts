@@ -34,7 +34,7 @@ export class CompaniesService {
   }
 
   checkUnique(value: string): Observable<any> {
-    return this.httpClient.get<any>(thi.apiUrl + '/companies/check-unique/${value}')
+    return this.httpClient.get<any>(this.apiUrl + '/companies/check-unique/${value}')
     .pipe(
       catchError(this.errorHandler)
     )
