@@ -33,6 +33,14 @@ namespace Downing.Server
                 app.UseHsts();
             }
 
+            app.UseCors("AllowAll");
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
