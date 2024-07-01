@@ -22,9 +22,15 @@ export class CreateComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.createForm = this.formBuilder.group({
-      companyName: ["", Validators.required],
-      companyCode: ["", Validators.required],
-      sharePrice: [""]
+      companyName: ["", [
+        Validators.required,
+        Validators.maxLength(100),
+        Validators.pattern('^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};\'"\\|,.<>\\/?]+$')]],
+      companyCode: ["", [
+        Validators.required,
+        Validators.maxLength(10),
+        Validators.pattern('^[A-Z0-9]+$')]],
+      sharePrice: ["", Validators.pattern('^-?\\d*(\\.\\d{0,5})?$')]
     });
   }
 
