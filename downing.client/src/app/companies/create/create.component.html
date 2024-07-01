@@ -17,10 +17,10 @@
              type="text"
              class="form-control" />
     </div>
-    <div *ngIf="companyName.invalid && (companyName.dirty || companyName?.touched)">
-      <small *ngIf="companyName?.errors?.required">Field is required.</small>
-      <small *ngIf="companyName?.errors?.maxlength">Maximum length is 100 characters.</small>
-      <small *ngIf="companyName?.errors?.pattern">Field must contain only alphanumeric and special characters.</small>
+    <div *ngIf="createForm.controls['companyName'].invalid && (createForm.controls['companyName'].dirty || createForm.controls['companyName']?.touched)">
+      <small *ngIf="createForm.controls['companyName'].errors?.['required']">Field is required.</small>
+      <small *ngIf="createForm.controls['companyName'].errors?.['maxlength']">Maximum length is 100 characters.</small>
+      <small *ngIf="createForm.controls['companyName'].errors?.['pattern']">Field must contain only alphanumeric and special characters.</small>
     </div>
     <div class="form-group">
       <label for="code">Company Code:</label>
@@ -29,10 +29,10 @@
              type="text"
              class="form-control" />
     </div>
-    <div *ngIf="code.invalid && (code.dirty || code.touched)">
-      <small *ngIf="code.errors?.maxlength">Maximum length is 10 characters.</small>
-      <small *ngIf="code.errors?.pattern">Field must only contain uppercase alphanumeric characters.</small>
-      <small *ngIf="code.errors?.unique">Company Code Already Exists</small>
+    <div *ngIf="createForm.controls['code'].invalid && (createForm.controls['code'].dirty || createForm.controls['code'].touched)">
+      <small *ngIf="createForm.controls['code'].errors?.['maxlength']">Maximum length is 10 characters.</small>
+      <small *ngIf="createForm.controls['code'].errors?.['pattern']">Field must only contain uppercase alphanumeric characters.</small>
+      <small *ngIf="createForm.controls['code'].errors?.['unique']">Company Code Already Exists</small>
     </div>
     <div class="form-group">
       <label for="sharePrice">Share Price:</label>
@@ -41,8 +41,8 @@
              type="number"
              class="form-control" />
     </div>
-    <div *ngIf="sharePrice.invalid && (sharePrice.dirty || sharePrice.touched)">
-      <small *ngIf="sharePrice.errors?.pattern">Field must only have 5 decimal places.</small>
+    <div *ngIf="createForm.controls['sharePrice'].invalid && (createForm.controls['sharePrice'].dirty || createForm.controls['sharePrice'].touched)">
+      <small *ngIf="createForm.controls['sharePrice'].errors?.['pattern']">Field must only have 5 decimal places.</small>
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="!createForm.valid">Save</button>
   </form>
