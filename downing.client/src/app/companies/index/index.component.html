@@ -20,10 +20,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let company of companies">
-        <td>{{company.companyName}}</td>
-        <td>{{company.createdDate}}</td>
-        <td>{{company.code}}</td>
-        <td>{{company.sharePrice}}</td>
+        <td>{{ company.companyName }}</td>
+        <td>{{company.createdDate | date:'dd-MM-yyyy' }}</td>
+        <td>{{ company.code }}</td>
+        <td>{{ company.sharePrice }}</td>
       </tr>
     </tbody>
   </table>
