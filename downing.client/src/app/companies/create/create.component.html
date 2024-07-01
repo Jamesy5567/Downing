@@ -32,6 +32,7 @@
     <div *ngIf="companyCode.invalid && (companyCode.dirty || companyCode.touched)">
       <small *ngIf="companyCode.errors?.maxlength">Maximum length is 10 characters.</small>
       <small *ngIf="companyCode.errors?.pattern">Field must only uppercase alphanumeric characters.</small>
+      <small *ngIf="companyCode.errors?.unique">Company Code Already Exists</small>
     </div>
     <div class="form-group">
       <label for="sharePrice">Share Price:</label>
@@ -43,6 +44,6 @@
     <div *ngIf="sharePrice.invalid && (sharePrice.dirty || sharePrice.touched)">
       <small *ngIf="sharePrice.errors?.pattern">Field must only have 5 decimal places.</small>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="!createForm.valid">Create</button>
+    <button class="btn btn-primary" type="submit" [disabled]="!createForm.valid">Save</button>
   </form>
 </div>

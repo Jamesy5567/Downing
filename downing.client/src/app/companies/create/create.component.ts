@@ -29,7 +29,8 @@ export class CreateComponent implements OnInit {
       companyCode: ["", [
         Validators.required,
         Validators.maxLength(10),
-        Validators.pattern('^[A-Z0-9]+$')]],
+        Validators.pattern('^[A-Z0-9]+$')],
+        [this.uniqueValidator()]],
       sharePrice: ["", Validators.pattern('^-?\\d*(\\.\\d{0,5})?$')]
     });
   }
@@ -48,4 +49,18 @@ export class CreateComponent implements OnInit {
     });
   }
 
+  uniqueValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
+      if (!control.value) {
+        return of(null);
+      } else {
+        return this.companiesService.checkUnique(control.value).pipe(
+          map(response => {
+            return response.exists ? { unique: true } : null;
+          }),
+          catchError(() => of(null))
+        );
+      }
+    };
+  }
 }

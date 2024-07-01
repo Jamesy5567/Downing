@@ -33,6 +33,13 @@ export class CompaniesService {
       )
   }
 
+  checkUnique(value: string): Observable<any> {
+    return this.httpClient.get<any>(thi.apiUrl + '/companies/check-unique/${value}')
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
   errorHandler(error: { error: { message: string; }; }) {
     let errorMessage = '';
 

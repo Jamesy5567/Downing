@@ -32,11 +32,11 @@ namespace Downing.Server.Controllers
             return await _companiesService.GetCompaniesList();
         }
 
-        // GET: api/Companies
-        [HttpGet]
-        public async Task<IEnumerable<Company>> GetCompanyCodes()
+         [HttpGet("check-unique/{value}")]
+        public async Task<IActionResult> CheckUniqueValue(string value)
         {
-            return await _companiesService.GetCompanyCodes();
+            var exists = await companiesService.ValueExistsAsync(value);
+            return Ok(new { exists });
         }
 
         // GET: api/Companies/5
