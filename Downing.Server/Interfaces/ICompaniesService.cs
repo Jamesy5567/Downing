@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Downing.Server.Interfaces
 {
-    /** Interface to call functions in the repo. */
+    // Interface to call functions in the repo.
     public interface ICompaniesService
     {
         Task<IEnumerable<Company>> GetCompaniesList();
