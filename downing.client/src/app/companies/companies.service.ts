@@ -18,7 +18,8 @@ export class CompaniesService {
   };
 
   constructor(private httpClient: HttpClient) { }
-
+ 
+  /** Function to get companies from DB. */
   getCompanies(): Observable<Company[]> {
     return this.httpClient.get<Company[]>(this.apiUrl + '/companies')
       .pipe(
@@ -26,6 +27,7 @@ export class CompaniesService {
       );
   }
 
+  /** Function to post new company to the DB. */
   createCompany(company: Company): Observable<Company> {
     return this.httpClient.post<Company>(this.apiUrl + '/companies', company)
       .pipe(
@@ -33,6 +35,7 @@ export class CompaniesService {
       )
   }
 
+  /** Function to check if the company code currently exists. */
   checkUnique(value: string): Observable<any> {
     return this.httpClient.get<any>(this.apiUrl + '/companies/check-unique/${value}')
     .pipe(

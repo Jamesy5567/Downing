@@ -6,6 +6,7 @@ using System.Numerics;
 
 namespace Downing.Server.Repositories
 {
+    /** Code Repo to manage data access to the DB. */
     public class CompaniesService : ICompaniesService
     {
         private readonly DowningDbContext _context;

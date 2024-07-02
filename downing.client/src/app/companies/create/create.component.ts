@@ -47,6 +47,7 @@ export class CreateComponent implements OnInit {
     
     const companyData: Company = this.createForm.value;        
 
+    /** Function to call the Companies-Service to add a new company, passes through the form data. */
     this.companiesService.createCompany(companyData).subscribe(res => {
       console.log('Record created successfully: ', res);
       this.createForm.reset();
@@ -57,6 +58,7 @@ export class CreateComponent implements OnInit {
     });
   }
 
+  /** Function to call the Companies-Service to see if the company code currently exists. */
   uniqueValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<{ [key: string]: any } | null> => {
       if (!control.value) {

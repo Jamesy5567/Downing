@@ -12,6 +12,7 @@ export class IndexComponent implements OnInit {
 
   constructor(public companiesService: CompaniesService) { }
 
+  /** Function to call the Companies-Service to fetch companies. */
   ngOnInit(): void {
     this.companiesService.getCompanies().subscribe((data: Company[]) => {
       this.companies = data;
